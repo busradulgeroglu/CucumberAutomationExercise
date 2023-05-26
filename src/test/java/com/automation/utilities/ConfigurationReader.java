@@ -8,7 +8,7 @@ public class ConfigurationReader {
     static {
         try {
             //what file to read
-            String path = "configuration.properties";
+            String path = "configurations.properties";
             //read the file into java, finds the file using the string path
             FileInputStream input = new FileInputStream(path);
             //properties --> class that store properties in key / value format

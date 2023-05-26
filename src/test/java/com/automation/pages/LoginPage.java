@@ -1,6 +1,7 @@
 package com.automation.pages;
 
 import com.automation.utilities.ConfigurationReader;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -36,6 +37,9 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//a[text()=' Logged in as ']")
     public WebElement welcomeMessage;
 
+    @FindBy (xpath = "//b[text()='sen2121']")
+    public WebElement welcomeName;
+
     @FindBy(xpath = "//a[text()=' Logout']")
     public WebElement logOut;
 
@@ -53,11 +57,15 @@ public class LoginPage extends BasePage{
         signUpBtn.click();
     }
 
-    public void login(){
-        homePage.signUpButton.click();
-        loginEmail.sendKeys(ConfigurationReader.get("email"));
-        loginPassword.sendKeys(ConfigurationReader.get("password"));
-        //loginBtn.click();
+    public void login(String email,String password){
+       loginEmail.sendKeys(email);
+       loginPassword.sendKeys(password);
+       loginBtn.click();
+    }
+
+    public void verifyName(String welcomeUsername){
+        String actualWelcomeMessageName = welcomeUsername;
+        Assert.assertEquals(welcomeName.getText(),actualWelcomeMessageName);
     }
 
 }
