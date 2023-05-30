@@ -35,4 +35,15 @@ public class Login_StepDefs {
     public void the_welcome_message_contains(String expectedWelcomeMessageName) {
        loginPage.verifyName(expectedWelcomeMessageName);
     }
+
+    @When("The user enters incorrect {string} and {string}")
+    public void the_user_enters_incorrect_and(String emailAdress, String password) {
+        loginPage.login(emailAdress,password);
+    }
+    @Then("The user should be able to see warning message {string}")
+    public void the_user_should_be_able_to_see_warning_message(String expectedWarningMessage) {
+        String actualWarningMessage = loginPage.warningMessage.getText();
+        Assert.assertEquals(expectedWarningMessage,actualWarningMessage);
+    }
+
 }
